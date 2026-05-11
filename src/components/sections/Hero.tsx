@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { MagneticButton } from "../MagneticButton";
 
-const roles = ["Developer.", "Designer.", "Automator.", "Assistant."];
+const roles = ["<Developer./>", "[Designer]", "{Automator}", "(Assistant.)"];
 
 export function Hero() {
   const [i, setI] = useState(0);
@@ -42,7 +42,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.9 }}
-            className="font-display text-[14vw] font-bold leading-[0.92] tracking-tighter md:text-[8.5vw] lg:text-[7.2vw]"
+            className="font-display text-[10vw] font-bold leading-[0.92] tracking-tighter md:text-[6vw] lg:text-[6.5vw]"
           >
             I build,{" "}
             <span className="italic font-light text-muted-foreground">
@@ -51,9 +51,9 @@ export function Hero() {
             <br />
             and automate
             <br />
-            <span className="inline-flex items-baseline gap-4">
-              <span className="text-gradient pb-4 pr-4">things</span>
-              <span className="relative inline-block h-[1.2em] overflow-hidden align-baseline pb-4 pr-4">
+            <span className="inline-flex flex-wrap items-baseline gap-x-3 gap-y-0 md:gap-x-4">
+              <span className="text-gradient pb-4 pr-2 md:pb-6">things</span>
+              <span className="relative inline-block h-[1.2em] overflow-hidden align-baseline pb-4">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={roles[i]}
@@ -75,7 +75,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.7 }}
-          className="col-span-12 mt-2 grid grid-cols-12 gap-12 md:gap-6 md:mt-12"
+          className="col-span-12 mt-2 grid grid-cols-12 gap-6 md:mt-12"
         >
           <div className="col-span-12 md:col-span-5 md:col-start-1">
             <p className="max-w-md text-base text-muted-foreground md:text-lg">
@@ -93,7 +93,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="col-span-10  md:col-span-4 md:col-start-8 md:block">
+          <div className="col-span-12 md:col-span-4 md:col-start-8">
             <div className="glass relative aspect-[4/3] overflow-hidden rounded-2xl p-5">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-accent/20" />
               <div className="relative flex h-full flex-col justify-between font-mono text-xs text-muted-foreground">
