@@ -16,7 +16,7 @@ export function About() {
   const ref = useRef<HTMLDivElement>(null);
   const [t, setT] = useState({ x: 0, y: 0 });
   return (
-    <section id="about" className="relative px-6 py-24 md:px-12 lg:px-20">
+    <section id="about" className="relative px-6 py-18 md:px-12 lg:px-20">
       <div className="mx-auto max-w-7xl">
         <SectionLabel
           index="01"

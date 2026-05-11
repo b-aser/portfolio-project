@@ -40,7 +40,7 @@ const socials = [
 
 export function Contact() {
   return (
-    <section id="contact" className="relative px-6 py-32 md:px-12 lg:px-20">
+    <section id="contact" className="relative px-6 py-18 md:px-12 lg:px-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
           <span className="text-primary">06</span>

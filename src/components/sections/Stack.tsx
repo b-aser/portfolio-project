@@ -17,7 +17,7 @@ const marquee = [
 
 export function Stack() {
   return (
-    <section id="stack" className="relative px-6 py-24 md:px-12 lg:px-20">
+    <section id="stack" className="relative px-6 py-18 md:px-12 lg:px-20">
       <div className="mx-auto max-w-7xl">
         <SectionLabel
           index="04"

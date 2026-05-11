@@ -24,7 +24,7 @@ const items = [
 
 export function Testimonials() {
   return (
-    <section className="relative px-6 py-32 md:px-12 lg:px-20">
+    <section className="relative px-6 py-18 md:px-12 lg:px-20">
       <div className="mx-auto max-w-7xl">
         <SectionLabel index="05" label="Kind words" title={"What clients\nsay after."} />
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
