@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { MagneticButton } from "../MagneticButton";
 
-const roles = ["<Developer./>", "[Designer]", "{Automator}", "(Assistant.)"];
+const roles = ["<Developer./>", "[Designer.]", "{Automator.}", "(Assistant.)"];
 
 export function Hero() {
   const [i, setI] = useState(0);
@@ -45,15 +45,15 @@ export function Hero() {
             className="font-display text-[10vw] font-bold leading-[0.92] tracking-tighter md:text-[6vw] lg:text-[6.5vw]"
           >
             I build,{" "}
-            <span className="italic font-light text-muted-foreground">
+            <span className="italic font-light text-muted-foreground pb-2">
               design
             </span>
-            <br />
+            <br/>
             and automate
             <br />
-            <span className="inline-flex flex-wrap items-baseline gap-x-3 gap-y-0 md:gap-x-4">
+            <span className="inline-flex flex-wrap items-baseline gap-x-3 gap-y-0 md:gap-x-4 pt-2 ">
               <span className="text-gradient pb-4 pr-2 md:pb-6">things</span>
-              <span className="relative inline-block h-[1.2em] overflow-hidden align-baseline pb-4">
+              <span className="relative inline-block h-[1.2em] overflow-hidden align-baseline pb-4 lg:text-[6.5vw] md:text-[6vw] text-[8vw] tracking-normal">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={roles[i]}
