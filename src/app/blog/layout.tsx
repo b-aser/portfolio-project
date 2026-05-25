@@ -1,0 +1,48 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "@/globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { BlogNav } from "@/components/Blog/BlogNav";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Aser Alemu - Portfolio",
+  description: "Aser - Portfolio | Full-stack Developer | Designer | Automation Engineer | VA Assistant",
+  keywords: ["Aser Alemu", "Portfolio", "Full-stack Developer", "Designer", "Automation Engineer", "VA Assistant"],
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+    >
+      <body className="min-h-full flex flex-col " suppressHydrationWarning  >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          scriptProps={{ async: true }}
+        >
+            <BlogNav/>
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

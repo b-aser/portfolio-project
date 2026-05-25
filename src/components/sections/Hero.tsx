@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { MagneticButton } from "../MagneticButton";
+import RotatingText from "../RotatingText";
 
-const roles = ["<Developer./>", "[Designer.]", "{Automator.}", "(Assistant.)"];
+const roles = ["Developer.", "Designer.", "Automator.", "Assistant."];
 
 export function Hero() {
   const [i, setI] = useState(0);
@@ -37,7 +38,7 @@ export function Hero() {
           </span>
         </motion.div>
 
-        <div className="col-span-12 mt-10 md:col-span-9">
+        <div className="col-span-12 mt-10 md:col-span-10">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -48,13 +49,28 @@ export function Hero() {
             <span className="italic font-light text-muted-foreground pb-2">
               design
             </span>
-            <br/>
+            <br />
             and automate
             <br />
             <span className="inline-flex flex-wrap items-baseline gap-x-3 gap-y-0 md:gap-x-4 pt-2 ">
               <span className="text-gradient pb-4 pr-2 md:pb-6">things</span>
-              <span className="relative inline-block h-[1.2em] overflow-hidden align-baseline pb-4 lg:text-[6.5vw] md:text-[6vw] text-[8vw] tracking-normal">
-                <AnimatePresence mode="wait">
+              <span className="relative inline-block h-[1.5em] overflow-hidden align-baseline pb-2 lg:text-[6.5vw] md:text-[6vw] text-[10vw] tracking-normal">
+                <RotatingText
+                  texts={["Developer.", "Designer.", "Automator.", "Assistant."]}
+                  mainClassName="bg-transparent text-primary overflow-hidden h-full justify-center"
+                  staggerFrom="first"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0}}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName=" pb-2 sm:pb-1 md:pb-1"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={2000}
+                  splitBy="characters"
+                  auto
+                  loop
+                />
+                {/* <AnimatePresence mode="wait">
                   <motion.span
                     key={roles[i]}
                     initial={{ y: "100%", opacity: 0 }}
@@ -65,7 +81,7 @@ export function Hero() {
                   >
                     {roles[i]}
                   </motion.span>
-                </AnimatePresence>
+                </AnimatePresence> */}
               </span>
             </span>
           </motion.h1>

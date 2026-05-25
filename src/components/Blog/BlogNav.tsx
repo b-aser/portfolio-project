@@ -2,13 +2,12 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { Menu, Moon, Snowflake, X } from "lucide-react";
 import { useTheme } from "next-themes";
 
 
 const links = [
-  { label: "Blog", href: "/blog" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
@@ -16,7 +15,7 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
-export function Nav() {
+export function BlogNav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
