@@ -8,13 +8,16 @@ type Props = {
   className?: string;
   onClick?: () => void;
   href?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 };
 
-export function MagneticButton({ children, variant = "primary", className, onClick, href }: Props) {
+export function MagneticButton({ children, variant, className, onClick, href, type = "button", disabled }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
   const handleMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (disabled) return;
     const r = ref.current?.getBoundingClientRect();
     if (!r) return;
     setPos({ x: (e.clientX - (r.left + r.width / 2)) * 0.3, y: (e.clientY - (r.top + r.height / 2)) * 0.3 });
@@ -33,7 +36,6 @@ export function MagneticButton({ children, variant = "primary", className, onCli
       onMouseLeave={() => setPos({ x: 0, y: 0 })}
       animate={{ x: pos.x, y: pos.y }}
       transition={{ type: "spring", damping: 15, stiffness: 200 }}
-      onClick={onClick}
       className={cn(
         "inline-flex select-none items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-wide transition-colors",
         styles,
@@ -44,5 +46,16 @@ export function MagneticButton({ children, variant = "primary", className, onCli
     </motion.div>
   );
 
-  return href ? <a href={href}>{inner}</a> : inner;
+  if (href) return <a href={href}>{inner}</a>;
+
+  return (
+    <button
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+      className="disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      {inner}
+    </button>
+  );
 }
