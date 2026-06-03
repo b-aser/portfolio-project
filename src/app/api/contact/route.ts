@@ -8,20 +8,19 @@ export async function POST(req: NextRequest) {
   try {
     const { name, email, message } = await req.json();
 
-    // Basic validation
     if (!name?.trim() || !email?.trim() || !message?.trim()) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    // Format the Telegram message (Markdown v2)
+    // Plain text — no parse_mode, no escaping issues
     const text = [
-      `📬 *New message from your portfolio*`,
-      ``,
-      `👤 *Name:*  ${escapeMarkdown(name)}`,
-      `📧 *Email:* ${escapeMarkdown(email)}`,
-      ``,
-      `💬 *Message:*`,
-      escapeMarkdown(message),
+      "📬 New message from your portfolio",
+      "",
+      `👤 Name:  ${name}`,
+      `📧 Email: ${email}`,
+      "",
+      "💬 Message:",
+      message,
     ].join("\n");
 
     const telegramRes = await fetch(
@@ -30,17 +29,21 @@ export async function POST(req: NextRequest) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          chat_id:    TELEGRAM_CHAT_ID,
+          chat_id: TELEGRAM_CHAT_ID,
           text,
-          parse_mode: "MarkdownV2",
+          // No parse_mode — plain text is always safe
         }),
       }
     );
 
-    if (!telegramRes.ok) {
-      const err = await telegramRes.json();
-      console.error("Telegram API error:", err);
-      return NextResponse.json({ error: "Failed to send message" }, { status: 502 });
+    const telegramData = await telegramRes.json();
+
+    if (!telegramData.ok) {
+      console.error("Telegram API error:", telegramData);
+      return NextResponse.json(
+        { error: "Failed to send message", detail: telegramData.description },
+        { status: 502 }
+      );
     }
 
     return NextResponse.json({ ok: true });
@@ -48,9 +51,4 @@ export async function POST(req: NextRequest) {
     console.error("Contact route error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
-}
-
-// Escape special chars required by Telegram MarkdownV2
-function escapeMarkdown(text: string) {
-  return text.replace(/[_*[\]()~`>#+=|{}.!-]/g, "\\$&");
 }
