@@ -8,7 +8,7 @@ import { useTheme } from "next-themes";
 
 
 const links = [
-  { label: "Blog", href: "/blog" },
+  { label: "Blog", href: "https://personal-blog-lovat-two.vercel.app/" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
