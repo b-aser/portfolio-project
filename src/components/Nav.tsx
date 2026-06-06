@@ -48,8 +48,8 @@ export function Nav() {
         )}
       >
         <a href="#top" className="flex items-center gap-2">
-          <div className="h-7 w-7 rounded-md bg-gradient-to-br from-primary to-accent shadow-glow" >
-            <Image src="/aser-pic.jpg" alt="Aser.dev" width={28} height={28} className="rounded-full object-cover w-full h-full" />
+          <div className="relative h-7 w-7 rounded-md " >
+            <Image src="/aser-pic.jpg" alt="Aser.dev" width={28} height={28} className="rounded-3xl object-cover w-full h-full shadow-glow" />
           </div>
           <span className="font-display text-sm font-bold tracking-tight">Aser.dev</span>
         </a>
