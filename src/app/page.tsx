@@ -1,3 +1,4 @@
+import { BackToTop } from "@/components/BackToTop";
 import { Background } from "@/components/Background";
 import { Cursor } from "@/components/Cursor";
 import { Nav } from "@/components/Nav";
@@ -23,6 +24,7 @@ export default function Home() {
       <Stack />
       <Testimonials />
       <Contact />
+      <BackToTop />
     </main>
   );
 }

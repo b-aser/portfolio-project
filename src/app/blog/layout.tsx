@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "@/globals.css";
+import { Geist, Geist_Mono, Montserrat, Playfair_Display, Open_Sans } from "next/font/google";
+import { Suspense } from "react";
+import { SiteFooter } from "@/components/Blog/SiteFooter";
+import { SiteHeader, SiteHeaderFallback } from "@/components/Blog/SiteHeader";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { BlogNav } from "@/components/Blog/BlogNav";
+import "./globals.css";
+import { Background } from "@/components/Background";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const openSans = Open_Sans({
+  variable: "--font-open-sans",
+  subsets: ["latin"],
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
@@ -15,9 +28,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aser Alemu - Portfolio",
-  description: "Aser - Portfolio | Full-stack Developer | Designer | Automation Engineer | VA Assistant",
-  keywords: ["Aser Alemu", "Portfolio", "Full-stack Developer", "Designer", "Automation Engineer", "VA Assistant"],
+  title: {
+    default: "Blog",
+    template: "%s · Blog",
+  },
+  description: "Personal blog powered by Payload CMS",
 };
 
 export default function RootLayout({
@@ -26,21 +41,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      suppressHydrationWarning
-    >
-      <body className="min-h-full flex flex-col " suppressHydrationWarning  >
+    <html lang="en" suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className={`${geistSans.variable} ${geistMono.variable} ${openSans.variable} ${montserrat.variable} min-h-full flex flex-col bg-background text-foreground antialiased`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-          scriptProps={{ async: true }}
         >
-            <BlogNav/>
-          {children}
+          <Background/>
+          <Suspense fallback={<SiteHeaderFallback />}>
+            <SiteHeader />
+          </Suspense>
+          <div className="flex-1">{children}</div>
+          <SiteFooter />
         </ThemeProvider>
       </body>
     </html>
