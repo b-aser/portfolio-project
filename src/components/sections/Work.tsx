@@ -9,6 +9,7 @@ const cats = ["All", "Dev", "Design", "Automation"] as const;
 
 const projects = [
   { title: "Lumen CRM", cat: "Dev", year: "2026", stack: ["Next", "Supabase", "Stripe"], grad: "from-violet-500/40 to-fuchsia-500/30" },
+  { title: "Linq", cat: "Dev", year: "2026", stack: ["Next", "Postgres", "Better-Auth"], grad: "from-blue-500/40 to-green-500/30" },
   { title: "Orbit Brand Kit", cat: "Design", year: "2025", stack: ["Figma", "Logo", "Print"], grad: "from-amber-400/40 to-orange-500/30" },
   { title: "InboxZero Flow", cat: "Automation", year: "2025", stack: ["n8n", "OpenAI", "Gmail"], grad: "from-emerald-400/40 to-teal-500/30" },
   { title: "Folio v3", cat: "Dev", year: "2025", stack: ["React", "Three.js"], grad: "from-rose-400/40 to-pink-500/30" },
